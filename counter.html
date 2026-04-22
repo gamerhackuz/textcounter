@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Matn Sanagichi</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; background: #f0f2f5; }
+    textarea { width: 100%; height: 140px; padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 16px; resize: vertical; }
+    .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 15px; margin-top: 20px; }
+    .card { background: #fff; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 3px 8px rgba(0,0,0,0.08); }
+    .card h3 { margin: 0; font-size: 28px; color: #3498db; }
+    .card p { margin: 5px 0 0; color: #666; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h2>📝 Matn Sanagichi</h2>
+  <textarea id="txt" placeholder="Matningizni bu yerga yozing..."></textarea>
+  <div class="stats">
+    <div class="card"><h3 id="c">0</h3><p>Belgilar</p></div>
+    <div class="card"><h3 id="w">0</h3><p>So'zlar</p></div>
+    <div class="card"><h3 id="s">0</h3><p>Jumla</p></div>
+    <div class="card"><h3 id="p">0</h3><p>Paragraf</p></div>
+  </div>
+
+  <script>
+    document.getElementById('txt').addEventListener('input', e => {
+      const t = e.target.value;
+      document.getElementById('c').textContent = t.length;
+      document.getElementById('w').textContent = t.trim() === '' ? 0 : t.trim().split(/\s+/).length;
+      document.getElementById('s').textContent = t.split(/[.!?]+/).filter(x=>x.trim()).length;
+      document.getElementById('p').textContent = t.split(/\n\s*\n/).filter(x=>x.trim()).length;
+    });
+  </script>
+</body>
+</html>
